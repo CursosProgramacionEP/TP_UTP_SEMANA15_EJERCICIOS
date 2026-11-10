@@ -1,0 +1,26 @@
+classDiagram
+direction LR
+class Adoptante {
+  -distrito: String
+  -edad: int
+  -nombre: String
+  +Adoptante(distrito: String, edad: int, nombre: String)
+  +getDistrito() String
+  +getEdad() int
+  +getNombre() String
+  +toString() String
+}
+class Mascota {
+  -adoptante: Adoptante
+  -edad: int
+  -especie: String
+  -nombre: String
+  +Mascota(adoptante: Adoptante, edad: int, especie: String, nombre: String)
+  +getAdoptante() Adoptante
+  +getEdad() int
+  +getEspecie() String
+  +getNombre() String
+  +esCachorro() boolean
+  +toString() String
+}
+Mascota --> Adoptante : adoptante

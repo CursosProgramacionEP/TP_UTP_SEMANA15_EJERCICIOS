@@ -1,0 +1,35 @@
+classDiagram
+direction LR
+class Banda {
+  -genero: String
+  -nombre: String
+  -pais: String
+  +Banda(genero: String, nombre: String, pais: String)
+  +getGenero() String
+  +getNombre() String
+  +getPais() String
+  +toString() String
+}
+class Presentacion {
+  -banda: Banda
+  -codigo: String
+  -duracionMinutos: int
+  -escenario: String
+  +Presentacion(banda: Banda, codigo: String, duracionMinutos: int, escenario: String)
+  +getBanda() Banda
+  +getCodigo() String
+  +getDuracionMinutos() int
+  +getEscenario() String
+  +toString() String
+}
+class ProgramaFestival {
+  -contador: int
+  -presentaciones: Presentacion[]
+  +ProgramaFestival(capacidad: int)
+  +agregar(p: Presentacion) boolean
+  +obtenerTodas() Presentacion[]
+  +calcularDuracionTotal() int
+  +listar() String
+}
+Presentacion --> Banda : banda
+ProgramaFestival --> Presentacion : presentaciones

@@ -1,0 +1,35 @@
+classDiagram
+class Astronauta {
+  -horasVuelo: int
+  -nombre: String
+  -pais: String
+  +Astronauta(horasVuelo: int, nombre: String, pais: String)
+  +toString() String
+}
+class Nave {
+  -capacidad: int
+  -modelo: String
+  -nombreNave: String
+  +Nave(capacidad: int, modelo: String, nombreNave: String)
+  +toString() String
+}
+class Mision {
+  -anioLanzamiento: int
+  -astronauta: Astronauta
+  -codigo: String
+  -destino: String
+  -nave: Nave
+  +Mision(anioLanzamiento: int, astronauta: Astronauta, codigo: String, destino: String, nave: Nave)
+  +toString() String
+}
+class RegistroMision {
+  -contador: int
+  -misiones: Mision[]
+  +RegistroMision(capacidad: int)
+  +agregar(m: Mision) boolean
+  +generarReporte(lista: Mision[])$ String
+  +obtenerTodas() Mision[]
+}
+Mision --> Astronauta : astronauta
+Mision --> Nave : nave
+RegistroMision --> Mision : misiones
