@@ -1,0 +1,304 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Descargar JUnit
+      run: |
+        curl -s -L -o junit4.jar https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar
+        curl -s -L -o hamcrest.jar https://repo1.maven.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+    - name: E1 - Pregunta 1.1 - Adoptante constructor y getters
+      id: e1-pregunta-1-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E1 - Pregunta 1.1 - Adoptante constructor y getters
+        setup-command: |
+          cd Ejercicio1_RefugioMascotas
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta1_1Test.java
+        command: cd Ejercicio1_RefugioMascotas && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta1_1Test
+        timeout: 10
+        max-score: 4
+    - name: E1 - Pregunta 1.2 - Adoptante toString
+      id: e1-pregunta-1-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E1 - Pregunta 1.2 - Adoptante toString
+        setup-command: |
+          cd Ejercicio1_RefugioMascotas
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta1_2Test.java
+        command: cd Ejercicio1_RefugioMascotas && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta1_2Test
+        timeout: 10
+        max-score: 4
+    - name: E1 - Pregunta 2.1 - Mascota constructor y getters
+      id: e1-pregunta-2-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E1 - Pregunta 2.1 - Mascota constructor y getters
+        setup-command: |
+          cd Ejercicio1_RefugioMascotas
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta2_1Test.java
+        command: cd Ejercicio1_RefugioMascotas && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta2_1Test
+        timeout: 10
+        max-score: 4
+    - name: E1 - Pregunta 2.2 - Mascota toString
+      id: e1-pregunta-2-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E1 - Pregunta 2.2 - Mascota toString
+        setup-command: |
+          cd Ejercicio1_RefugioMascotas
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta2_2Test.java
+        command: cd Ejercicio1_RefugioMascotas && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta2_2Test
+        timeout: 10
+        max-score: 5
+    - name: E1 - Pregunta 2.3 - Mascota esCachorro
+      id: e1-pregunta-2-3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E1 - Pregunta 2.3 - Mascota esCachorro
+        setup-command: |
+          cd Ejercicio1_RefugioMascotas
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta2_3Test.java
+        command: cd Ejercicio1_RefugioMascotas && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta2_3Test
+        timeout: 10
+        max-score: 3
+    - name: E2 - Pregunta 1 - Clase Banda
+      id: e2-pregunta-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 1 - Clase Banda
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta1Test.java
+        command: cd Ejercicio2_FestivalMusica && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta1Test
+        timeout: 10
+        max-score: 3
+    - name: E2 - Pregunta 2 - Clase Presentacion
+      id: e2-pregunta-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 2 - Clase Presentacion
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta2Test.java
+        command: cd Ejercicio2_FestivalMusica && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta2Test
+        timeout: 10
+        max-score: 4
+    - name: E2 - Pregunta 3 - Registro y obtenerTodas
+      id: e2-pregunta-3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 3 - Registro y obtenerTodas
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta3Test.java
+        command: cd Ejercicio2_FestivalMusica && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta3Test
+        timeout: 10
+        max-score: 3
+    - name: E2 - Pregunta 4.1 - Agregar con espacio
+      id: e2-pregunta-4-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 4.1 - Agregar con espacio
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta4_1Test.java
+        command: cd Ejercicio2_FestivalMusica && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta4_1Test
+        timeout: 10
+        max-score: 2
+    - name: E2 - Pregunta 4.2 - Agregar con programa lleno
+      id: e2-pregunta-4-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 4.2 - Agregar con programa lleno
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta4_2Test.java
+        command: cd Ejercicio2_FestivalMusica && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta4_2Test
+        timeout: 10
+        max-score: 2
+    - name: E2 - Pregunta 5 - Duracion total
+      id: e2-pregunta-5
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 5 - Duracion total
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta5Test.java
+        command: cd Ejercicio2_FestivalMusica && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta5Test
+        timeout: 10
+        max-score: 2
+    - name: E2 - Pregunta 6 - Listar programa
+      id: e2-pregunta-6
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E2 - Pregunta 6 - Listar programa
+        setup-command: |
+          cd Ejercicio2_FestivalMusica
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta6Test.java
+        command: cd Ejercicio2_FestivalMusica && (grep -q 'StringBuilder' src/Modelo/ProgramaFestival.java || (echo 'listar debe usar StringBuilder' && exit 1)) && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta6Test
+        timeout: 10
+        max-score: 4
+    - name: E3 - Pregunta 1.1 - Clase Astronauta
+      id: e3-pregunta-1-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 1.1 - Clase Astronauta
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta1_1Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta1_1Test
+        timeout: 10
+        max-score: 2
+    - name: E3 - Pregunta 1.2 - Clase Nave
+      id: e3-pregunta-1-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 1.2 - Clase Nave
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta1_2Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta1_2Test
+        timeout: 10
+        max-score: 2
+    - name: E3 - Pregunta 2 - Clase Mision
+      id: e3-pregunta-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 2 - Clase Mision
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta2Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta2Test
+        timeout: 10
+        max-score: 4
+    - name: E3 - Pregunta 3 - Registro y obtenerTodas
+      id: e3-pregunta-3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 3 - Registro y obtenerTodas
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta3Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta3Test
+        timeout: 10
+        max-score: 3
+    - name: E3 - Pregunta 4.1 - Agregar con espacio
+      id: e3-pregunta-4-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 4.1 - Agregar con espacio
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta4_1Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta4_1Test
+        timeout: 10
+        max-score: 1
+    - name: E3 - Pregunta 4.2 - Agregar con registro lleno
+      id: e3-pregunta-4-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 4.2 - Agregar con registro lleno
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta4_2Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta4_2Test
+        timeout: 10
+        max-score: 1
+    - name: E3 - Pregunta 5.1 - Contenido del reporte
+      id: e3-pregunta-5-1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 5.1 - Contenido del reporte
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta5_1Test.java
+        command: cd Ejercicio3_MisionesEspaciales && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta5_1Test
+        timeout: 10
+        max-score: 2
+    - name: E3 - Pregunta 5.2 - Formato exacto del reporte
+      id: e3-pregunta-5-2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: E3 - Pregunta 5.2 - Formato exacto del reporte
+        setup-command: |
+          cd Ejercicio3_MisionesEspaciales
+          mkdir -p build/classes build/test/classes
+          javac -encoding UTF-8 -d build/classes src/Modelo/*.java
+          javac -encoding UTF-8 -cp "../junit4.jar:build/classes" -d build/test/classes test/Pregunta5_2Test.java
+        command: cd Ejercicio3_MisionesEspaciales && (grep -q 'StringBuilder' src/Modelo/RegistroMision.java || (echo 'generarReporte debe usar StringBuilder' && exit 1)) && (grep -q 'String.format' src/Modelo/RegistroMision.java || (echo 'generarReporte debe usar String.format' && exit 1)) && java -cp "../junit4.jar:../hamcrest.jar:build/classes:build/test/classes" org.junit.runner.JUnitCore Pregunta5_2Test
+        timeout: 10
+        max-score: 3
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        E1-PREGUNTA-1-1_RESULTS: "${{steps.e1-pregunta-1-1.outputs.result}}"
+        E1-PREGUNTA-1-2_RESULTS: "${{steps.e1-pregunta-1-2.outputs.result}}"
+        E1-PREGUNTA-2-1_RESULTS: "${{steps.e1-pregunta-2-1.outputs.result}}"
+        E1-PREGUNTA-2-2_RESULTS: "${{steps.e1-pregunta-2-2.outputs.result}}"
+        E1-PREGUNTA-2-3_RESULTS: "${{steps.e1-pregunta-2-3.outputs.result}}"
+        E2-PREGUNTA-1_RESULTS: "${{steps.e2-pregunta-1.outputs.result}}"
+        E2-PREGUNTA-2_RESULTS: "${{steps.e2-pregunta-2.outputs.result}}"
+        E2-PREGUNTA-3_RESULTS: "${{steps.e2-pregunta-3.outputs.result}}"
+        E2-PREGUNTA-4-1_RESULTS: "${{steps.e2-pregunta-4-1.outputs.result}}"
+        E2-PREGUNTA-4-2_RESULTS: "${{steps.e2-pregunta-4-2.outputs.result}}"
+        E2-PREGUNTA-5_RESULTS: "${{steps.e2-pregunta-5.outputs.result}}"
+        E2-PREGUNTA-6_RESULTS: "${{steps.e2-pregunta-6.outputs.result}}"
+        E3-PREGUNTA-1-1_RESULTS: "${{steps.e3-pregunta-1-1.outputs.result}}"
+        E3-PREGUNTA-1-2_RESULTS: "${{steps.e3-pregunta-1-2.outputs.result}}"
+        E3-PREGUNTA-2_RESULTS: "${{steps.e3-pregunta-2.outputs.result}}"
+        E3-PREGUNTA-3_RESULTS: "${{steps.e3-pregunta-3.outputs.result}}"
+        E3-PREGUNTA-4-1_RESULTS: "${{steps.e3-pregunta-4-1.outputs.result}}"
+        E3-PREGUNTA-4-2_RESULTS: "${{steps.e3-pregunta-4-2.outputs.result}}"
+        E3-PREGUNTA-5-1_RESULTS: "${{steps.e3-pregunta-5-1.outputs.result}}"
+        E3-PREGUNTA-5-2_RESULTS: "${{steps.e3-pregunta-5-2.outputs.result}}"
+      with:
+        runners: e1-pregunta-1-1,e1-pregunta-1-2,e1-pregunta-2-1,e1-pregunta-2-2,e1-pregunta-2-3,e2-pregunta-1,e2-pregunta-2,e2-pregunta-3,e2-pregunta-4-1,e2-pregunta-4-2,e2-pregunta-5,e2-pregunta-6,e3-pregunta-1-1,e3-pregunta-1-2,e3-pregunta-2,e3-pregunta-3,e3-pregunta-4-1,e3-pregunta-4-2,e3-pregunta-5-1,e3-pregunta-5-2
